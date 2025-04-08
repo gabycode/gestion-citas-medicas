@@ -1,25 +1,21 @@
-version: '3.8'
+version: '3.1'
 
 services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
-      - MONGODB_URI=mongodb://mongo:27017/citas-medicas
-    depends_on:
-      - mongo
-    volumes:
-      - ./:/app
-      - /app/node_modules
 
   mongo:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: claveadmin
 
-volumes:
-  mongo-data:
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: claveadmin
+      ME_CONFIG_MONGODB_URL: mongodb://admin:claveadmin@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
