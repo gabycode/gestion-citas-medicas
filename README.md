@@ -1,1 +1,1 @@
-# sistema-de-gestion-de-citas-medicas
+# gestion-citas-medicas
