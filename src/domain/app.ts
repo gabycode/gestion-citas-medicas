@@ -1,1 +1,0 @@
-// Carpeta para entidades, modelos de dominio y reglas de negocio

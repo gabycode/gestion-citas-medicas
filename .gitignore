@@ -1,8 +1,69 @@
-# ignore ALL .log files
-*.log
+# ============================
+# 🔧 Dependencias y paquetes
+# ============================
+node_modules/
+package-lock.json
+yarn.lock
 
-#ignore node_modules folder
-node_modules
+# ============================
+# 🧪 Cobertura de pruebas
+# ============================
+coverage/
+.nyc_output/
 
-#ignore .env file
+# ============================
+# 📦 Builds y artefactos
+# ============================
+dist/
+build/
+out/
+
+# ============================
+# ⚙️ Configuración y entorno
+# ============================
 .env
+.env.*     # archivos como .env.dev, .env.local, etc.
+*.local
+
+# ============================
+# 🐳 Docker
+# ============================
+docker-compose.override.yml
+.docker/
+
+# ============================
+# 💻 Configuraciones del IDE
+# ============================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ============================
+# 💥 Logs y cachés
+# ============================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
+.tmp/
+
+# ============================
+# 📸 Capturas y assets temporales
+# ============================
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+
+# ============================
+# 🚫 Archivos del sistema
+# ============================
+.DS_Store
+Thumbs.db
+desktop.ini

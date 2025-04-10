@@ -1,21 +1,39 @@
-version: '3.1'
+version: "3.8"
 
 services:
+  backend:
+    build:
+      context: .
+      target: dev
+    container_name: gestion-citas-backend
+    ports:
+      - "3030:3030"
+    environment:
+      - NODE_ENV=development
+      - MONGO_URL=mongodb://mongo:27017/gestion-citas
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
 
   mongo:
-    image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: claveadmin
+    image: mongo:5
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
 
   mongo-express:
     image: mongo-express
-    restart: always
+    container_name: mongo-express
     ports:
-      - 8081:8081
+      - "8081:8081"
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: claveadmin
-      ME_CONFIG_MONGODB_URL: mongodb://admin:claveadmin@mongo:27017/
-      ME_CONFIG_BASICAUTH: false
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_BASICAUTH_USERNAME=${MONGO_EXPRESS_USER}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGO_EXPRESS_PASS}
+
+volumes:
+  mongo-data:
