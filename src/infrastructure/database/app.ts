@@ -1,1 +1,0 @@
-// Configuración de la base de datos y repositorios

@@ -1,1 +1,0 @@
-// Carpeta para configuración de logging
