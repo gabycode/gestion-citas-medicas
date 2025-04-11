@@ -1,14 +1,13 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-export const connectMongo = async () => {
+export const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URL || '');
-    console.log('✅ MongoDB conectado');
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/gestion-citas');
+    console.log('📦 Conectado a MongoDB');
   } catch (error) {
-    console.error('❌ Error conectando a Mongo:', error);
+    console.error('❌ Error conectando a MongoDB', error);
     process.exit(1);
   }
 };
+
+

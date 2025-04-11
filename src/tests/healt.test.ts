@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../interfaces/http/server';
+import { app } from '../interfaces/http/server';
 
 describe('GET /api/health', () => {
   it('debería devolver status OK', async () => {

@@ -1,10 +1,22 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-const CitaSchema = new Schema({
-  pacienteId: { type: String, required: true },
-  doctorId: { type: String, required: true },
-  fecha: { type: Date, required: true },
-  motivo: { type: String, required: true },
-}, { timestamps: true });
+export interface Cita extends Document {
+  fecha: Date;
+  hora: string;
+  paciente: mongoose.Types.ObjectId;
+  doctor: mongoose.Types.ObjectId;
+}
 
-export const CitaModel = model('Cita', CitaSchema);
+const CitaSchema: Schema = new Schema(
+  {
+    fecha: { type: Date, required: true },
+    hora: { type: String, required: true },
+    paciente: { type: mongoose.Schema.Types.ObjectId, ref: 'Paciente', required: true },
+    doctor: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctor', required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+export const CitaModel = mongoose.model<Cita>('Cita', CitaSchema);
