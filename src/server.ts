@@ -1,8 +1,8 @@
-import 'reflect-metadata';
 import dotenv from 'dotenv';
 import app from './interfaces/http/server';
-import { AppDataSource } from './infrastructure/database/datasource';
 import logger from './infrastructure/logger/PinoLogger';
+import { connectMongo } from './infrastructure/database/mongoose/mongoose';
+
 
 // Cargar variables de entorno
 dotenv.config();
@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3030;
     logger.info('⏳ Iniciando servidor...');
 
     // Inicializar conexión a la base de datos
-    await AppDataSource.initialize();
+    await connectMongo();
     logger.info('✅ Conectado exitosamente a MongoDB');
 
     // Iniciar servidor HTTP

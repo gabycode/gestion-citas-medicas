@@ -1,19 +1,20 @@
-import { CrearCitaDTO } from '../dto/CrearCitaDTO';
-import { Cita } from '../../domain/entities/Cita';
-import { CitaRepository } from '../../domain/repositories/CitaRepository';
+// import { CitaRepository } from '../../domain/repositories/CitaRepository';
+// import { CrearCitaDTO } from '../dto/CrearCitaDTO';
+// import { Cita } from '../../domain/entities/Cita';
+// import { v4 as uuidv4 } from 'uuid';
 
-export class CrearCita {
-  constructor(private readonly repo: CitaRepository) {}
+// export class CrearCita {
+//   constructor(private citaRepo: CitaRepository) {}
 
-  async execute(data: CrearCitaDTO): Promise<Cita> {
-    const cita = new Cita(
-      Date.now().toString(), // o usa UUID si prefieres
-      data.pacienteId,
-      data.doctorId,
-      data.fecha,
-      data.motivo
-    );
+//   async ejecutar(data: CrearCitaDTO): Promise<Cita> {
+//     const cita = new Cita(
+//       uuidv4(),
+//       data.pacienteId,
+//       data.doctorId,
+//       data.fecha,
+//       data.motivo
+//     );
 
-    return await this.repo.crear(cita);
-  }
-}
+//     return await this.citaRepo.crear(cita);
+//   }
+// }
